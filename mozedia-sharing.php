@@ -266,7 +266,8 @@ function add_mozedia_social_sharing_buttons($content) {
     
     // Get current page title
     
-    $mozediaTitle = str_replace(' ', '%20', get_the_title());
+	$mozediaTitle = str_replace( '%', '%25', get_the_title());
+	$socialTitle = urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8'));
     
     // Get Post Thumbnail for pinterest
     
@@ -283,7 +284,7 @@ function add_mozedia_social_sharing_buttons($content) {
 	
     // Social share button URLs
     $facebookURL = 'https://www.facebook.com/sharer/sharer.php?u=' . $mozediaURL;
-    $twitterURL      = 'https://twitter.com/intent/tweet?text=' . $mozediaTitle . '&amp;url=' . $mozediaURL;
+    $twitterURL      = 'https://twitter.com/intent/tweet?text=' . $socialTitle . '&amp;url=' . $mozediaURL;
     $googleURL   = 'https://plus.google.com/share?url=' . $mozediaURL;
     $linkedInURL = 'https://www.linkedin.com/shareArticle?mini=true&url=' . $mozediaURL . '&amp;title=' . $mozediaTitle;
     $pinterestURL = 'https://pinterest.com/pin/create/button/?url=' . $mozediaURL . '&amp;media=' . $mozediaThumbnail[0] . '&amp;description=' . $mozediaTitle;
